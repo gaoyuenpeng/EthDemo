@@ -23,9 +23,9 @@ class AccountBuildActivity : BaseComposeActivity<AccountBuildViewModel>() {
     @Composable
     override fun loadCompose() {
 
-        val nameState = state { TextFieldValue("gaoyuenpeng123456") }
-        val passwordState = state { TextFieldValue("gao123456") }
-        val passwordConfirmState = state { TextFieldValue("gao123456") }
+        val nameState = state { TextFieldValue("") }
+        val passwordState = state { TextFieldValue("") }
+        val passwordConfirmState = state { TextFieldValue("") }
 
         CommonContent("创建身份",
             modifier = Modifier.padding(10.dp),
