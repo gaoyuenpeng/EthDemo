@@ -35,7 +35,7 @@ fun TransactionPage() {
 @Composable
 fun TransactionPage(wallet: WalletAccount?, mainViewModel: MainViewModel?) {
     wallet?.let { walletAccount ->
-        MaterialTheme(colors = MyThemeColor) {
+        MaterialTheme(colors = LightColorPalette) {
             BoxGray(modifier = Modifier.fillMaxSize()) {
                 Card(modifier = Modifier.fillMaxWidth().padding(10.dp)) {
                     Stack(modifier = Modifier.height(150.dp)) {

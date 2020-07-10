@@ -24,7 +24,7 @@ import com.xiaoyuen.ethcompose.ui.viewmodel.MainViewModel
 @Composable
 fun HomeTabItem(item: TabItemModel, pageState: Int, onClick: () -> Unit) {
 
-    val color = if (item.index == pageState) Color(0xFF1296db) else Color(0xFFbfbfbf)
+    val color = if (item.index == pageState) MainBlue else TextTabNormal
     val imageId = if (item.index == pageState) item.iconSelect else item.iconNormal
 
     Box(

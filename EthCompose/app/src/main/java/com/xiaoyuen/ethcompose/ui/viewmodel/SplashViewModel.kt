@@ -9,7 +9,7 @@ import com.xiaoyuen.ethcompose.ui.model.WalletAccountRepository
 
 class SplashViewModel(context: Context) : BaseViewModel(context) {
 
-    private var walletAccountRepository = WalletAccountRepository(context = context)
+    private var walletAccountRepository = WalletAccountRepository(context)
 
     //获取钱包
     fun checkAccount() {

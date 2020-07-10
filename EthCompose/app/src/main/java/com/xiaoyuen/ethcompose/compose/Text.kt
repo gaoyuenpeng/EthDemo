@@ -31,7 +31,7 @@ fun TextBold18(text: String, color: Color = TextBlack, modifier: Modifier = Modi
 @Composable
 fun TextFieldWithHint(
     value: TextFieldValue,
-    modifier: Modifier = Modifier.None,
+    modifier: Modifier = Modifier,
     hint: String = "",
     onValueChange: (TextFieldValue) -> Unit,
     textStyle: TextStyle = currentTextStyle(),
@@ -50,12 +50,12 @@ fun TextFieldWithHint(
             imeAction = imeAction,
             onImeActionPerformed = onImeActionPerformed,
             textColor = TextBlack,
-            cursorColor = Color(0xFF1296db)
+            cursorColor = MainBlue
         )
         if (value.text.isEmpty()) Text(
             hint,
             modifier = Modifier.fillMaxWidth().gravity(Alignment.Center),
-            style = TextStyle(color = Color(0xFFC7C7C7)).plus(TextStyle(textAlign = textAlign))
+            style = TextStyle(color = TextGreyHint).plus(TextStyle(textAlign = textAlign))
         )
     }
 }

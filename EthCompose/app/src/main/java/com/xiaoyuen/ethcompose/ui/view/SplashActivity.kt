@@ -5,6 +5,7 @@ import androidx.ui.core.Alignment
 import androidx.ui.core.ContentScale
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.Image
+import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
@@ -24,7 +25,7 @@ class SplashActivity : BaseComposeActivity<SplashViewModel>() {
     @Composable
     override fun loadCompose() {
 
-        CommonContent(hasTitle = false) {
+        CommonContent(hasTitle = false, backgroundColor = Color.White) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,

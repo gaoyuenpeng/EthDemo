@@ -70,9 +70,7 @@ class TransferViewModel(context: Context) : BaseViewModel(context),
     //去扫描二维码
     fun goScan() {
 
-        if (permission == null) {
-            permission = RxPermissions(context as Activity)
-        }
+        if (permission == null) permission = RxPermissions(context as Activity)
 
         //获取照相机权限
         permission!!.request(Manifest.permission.CAMERA).subscribe { granted ->

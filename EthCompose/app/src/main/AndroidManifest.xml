@@ -3,6 +3,7 @@
     package="com.xiaoyuen.ethcompose">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -10,7 +11,6 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".base.MyApp"
@@ -18,12 +18,14 @@
         android:autoRevokePermissions="allowed"
         android:icon="@mipmap/icon_launcher_dog"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/icon_launcher_dog"
         android:supportsRtl="true"
         android:theme="@style/Theme.EthCompose">
         <activity
             android:name=".ui.view.SplashActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.EthCompose.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,13 +35,26 @@
         </activity>
         <activity
             android:name=".ui.view.MainActivity"
-            android:launchMode="singleTask" />
-        <activity android:name=".ui.view.AccountBuildActivity" />
-        <activity android:name=".ui.view.AccountLoginActivity" />
-        <activity android:name=".ui.view.AccountBuildMnemonicsActivity" />
-        <activity android:name=".ui.view.CollectionActivity" />
-        <activity android:name=".ui.view.TransferActivity" />
-        <activity android:name=".scan.ScanCodeActivity" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.view.AccountBuildActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.view.AccountLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.view.AccountBuildMnemonicsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.view.CollectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.view.TransferActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".scan.ScanCodeActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

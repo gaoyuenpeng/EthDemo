@@ -18,6 +18,9 @@ abstract class BaseComposeActivity<VM : BaseViewModel> : BaseActivity<VM>() {
         composeLoaded()
     }
 
+    /***
+     * 设置Compose的liveData：loading
+     */
     final override fun initLiveData() {
         super.initLiveData()
         viewModel?.loadingData()?.observe(this, Observer {
@@ -27,8 +30,14 @@ abstract class BaseComposeActivity<VM : BaseViewModel> : BaseActivity<VM>() {
 
     open fun initView() {}
 
+    /***
+     * compose 布局
+     */
     @Composable
     abstract fun loadCompose()
 
+    /***
+     * compose加载完成后，实现业务逻辑
+     */
     open fun composeLoaded() {}
 }

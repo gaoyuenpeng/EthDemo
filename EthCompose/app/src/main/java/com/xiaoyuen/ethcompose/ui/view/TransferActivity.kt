@@ -22,18 +22,17 @@ import androidx.ui.unit.TextUnit
 import androidx.ui.unit.dp
 import com.xiaoyuen.ethcompose.base.BaseComposeActivity
 import com.xiaoyuen.ethcompose.compose.*
-import com.xiaoyuen.ethcompose.entity.TransferAddressModel
-import com.xiaoyuen.ethcompose.entity.TransferValueModel
 import com.xiaoyuen.ethcompose.entity.WalletValueModel
 import com.xiaoyuen.ethcompose.R
+import com.xiaoyuen.ethcompose.entity.StringValueModel
 import com.xiaoyuen.ethcompose.ui.viewmodel.TransferViewModel
 import com.xiaoyuen.ethcompose.ui.viewmodel.ViewModelFactory
 
 
 class TransferActivity : BaseComposeActivity<TransferViewModel>() {
 
-    private val transferAddressModel = TransferAddressModel()
-    private val transferValueModel = TransferValueModel()
+    private val transferAddressModel = StringValueModel()
+    private val transferValueModel = StringValueModel()
     private val walletValueModel = WalletValueModel(null)
 
     override fun initViewModel(): TransferViewModel? = ViewModelFactory.buildForTransfer(this)
@@ -44,11 +43,11 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
         })
 
         viewModel?.addressData()?.observe(this, Observer {
-            transferAddressModel.address = it
+            transferAddressModel.value = it
         })
 
         viewModel?.amountData()?.observe(this, Observer {
-            transferValueModel.amount = it
+            transferValueModel.value = it
         })
 
         viewModel?.transferResultData()?.observe(this, Observer {
@@ -64,7 +63,6 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
 
         CommonContent(
             "转账",
-            backgroundColor = Color(0xFFededed),
             onBackClick = { finish() }) {
 
             Stack(modifier = Modifier.fillMaxSize()) {
@@ -83,16 +81,16 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
                             TextFieldWithHint(
                                 modifier = Modifier.padding(start = 10.dp, end = 10.dp).weight(1f),
                                 value = TextFieldValue(
-                                    text = transferAddressModel.address,
+                                    text = transferAddressModel.value,
                                     selection = TextRange(
-                                        transferAddressModel.address.length,
-                                        transferAddressModel.address.length
+                                        transferAddressModel.value.length,
+                                        transferAddressModel.value.length
                                     )
                                 ),
-                                keyboardType = KeyboardType.Text,
+                                keyboardType = KeyboardType.Password,
                                 hint = "收款地址",
                                 onValueChange = {
-                                    transferAddressModel.address = it.text
+                                    transferAddressModel.value = it.text
                                 }
                             )
                             IconButton(onClick = {
@@ -133,25 +131,23 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
                             .fillMaxWidth(),
                         elevation = 0.dp
                     ) {
-                        Stack(
+                        Row(
+                            verticalGravity = Alignment.CenterVertically,
                             modifier = Modifier.fillMaxWidth()
                                 .defaultMinSizeConstraints(minHeight = 50.dp)
                         ) {
-
                             TextBold18(
                                 text = "转账金额",
-                                modifier = Modifier.gravity(Alignment.CenterStart)
-                                    .padding(start = 10.dp)
+                                modifier = Modifier.padding(start = 10.dp, end = 10.dp)
                             )
                             TextFieldWithHint(
-                                modifier = Modifier.gravity(Alignment.CenterEnd)
-                                    .padding(end = 10.dp)
+                                modifier = Modifier.padding(end = 10.dp)
                                     .defaultMinSizeConstraints(minWidth = 200.dp),
                                 value = TextFieldValue(
-                                    text = transferValueModel.amount,
+                                    text = transferValueModel.value,
                                     selection = TextRange(
-                                        transferValueModel.amount.length,
-                                        transferValueModel.amount.length
+                                        transferValueModel.value.length,
+                                        transferValueModel.value.length
                                     )
                                 ),
                                 keyboardType = KeyboardType.Number,
@@ -162,40 +158,23 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
                                     fontSize = TextUnit.Sp(14)
                                 ),
                                 onValueChange = {
-                                    transferValueModel.amount = it.text
+                                    if (it.text.startsWith("00")) {
+                                        return@TextFieldWithHint
+                                    }
+                                    if (it.text.startsWith(".")) {
+                                        return@TextFieldWithHint
+                                    }
+                                    transferValueModel.value = it.text
                                 })
                         }
                     }
-//            Card(
-//                modifier = Modifier.padding(start = 10.dp, top = 10.dp, end = 10.dp).fillMaxWidth()
-//                    .drawOpacity(0f),
-//                elevation = 0.dp
-//            ) {
-//
-//                Stack(
-//                    modifier = Modifier.fillMaxWidth().defaultMinSizeConstraints(minHeight = 50.dp)
-//                ) {
-//                    Text(
-//                        text = "矿工费",
-//                        color = TextBlack,
-//                        fontSize = TextUnit.Sp(18),
-//                        modifier = Modifier.gravity(Alignment.CenterStart).padding(start = 10.dp)
-//                    )
-//                    Text(
-//                        text = "${castState.value} eth",
-//                        color =TextBlack,
-//                        fontSize = TextUnit.Sp(14),
-//                        modifier = Modifier.gravity(Alignment.CenterEnd).padding(end = 10.dp)
-//                    )
-//                }
-//            }
                     CommonButton(
                         title = "转账",
                         modifier = Modifier.padding(start = 10.dp, top = 50.dp, end = 10.dp),
                         onClick = {
                             viewModel?.transfer(
-                                transferAddressModel.address,
-                                transferValueModel.amount
+                                transferAddressModel.value,
+                                transferValueModel.value
                             )
                         })
                 }

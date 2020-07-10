@@ -23,13 +23,13 @@ import com.xiaoyuen.ethcompose.R
 @Composable
 fun CommonContent(
     title: String? = null,
-    backgroundColor: Color = Color.White,
+    backgroundColor: Color = MainGrey,
     onBackClick: () -> Unit = {},
     modifier: Modifier = Modifier,
     hasTitle: Boolean = true,
     content: @Composable() () -> Unit
 ) {
-    MaterialTheme(colors = MyThemeColor) {
+    MaterialTheme(colors = LightColorPalette) {
         Surface(color = backgroundColor, modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.fillMaxSize()) {
                 if (hasTitle) {
@@ -142,7 +142,7 @@ fun BoxGray(
     Box(
         modifier = modifier,
         shape = shape,
-        backgroundColor = Color(0xFFededed),
+        backgroundColor = MainGrey,
         border = border,
         padding = padding,
         paddingStart = paddingStart,
@@ -158,7 +158,7 @@ fun BoxGray(
 fun MyTitleBar(title: String, onBackClick: () -> Unit = {}) {
     Box(
         modifier = Modifier.fillMaxWidth(),
-        backgroundColor = Color(0xFF1296db)
+        backgroundColor = MainBlue
     ) {
         Row(
             modifier = Modifier.height(50.dp),

@@ -19,7 +19,7 @@ fun DividerTransparent(height: Dp = 10.dp) {
 @Composable
 fun DividerGray(height: Dp = 10.dp) {
     DividerColor(
-        color = Color(0xFFededed),
+        color = MainGrey,
         height = height
     )
 }

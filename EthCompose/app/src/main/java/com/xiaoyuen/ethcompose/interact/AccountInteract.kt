@@ -21,7 +21,6 @@ import org.web3j.tx.Transfer
 import org.web3j.utils.Convert
 import java.io.File
 import java.io.IOException
-import java.lang.RuntimeException
 import java.math.BigDecimal
 import java.security.SecureRandom
 
@@ -34,19 +33,24 @@ class AccountInteract(
     private var buildAccountListener: OnBuildAccountListener? = null
 ) {
 
+    //infura ： Ropsten测试环境
     private val testEthService = "https://ropsten.infura.io/v3/87e351dc69004a02b9cc7653484d0737"
 
     private val repository = WalletAccountRepository(context)
 
     private var walletAccount: WalletAccount? = null
 
-    //登出
+    /***
+     * 登出
+     */
     fun logOut() {
         repository.clearAccount()
         logOutAccountListener?.onLogOutAccountResponse()
     }
 
-    //登录
+    /***
+     * 登录
+     */
     fun login(mnemonics: String?, passWord: String?, passWordConfirm: String?) {
         if (mnemonics == null || mnemonics.isEmpty()) {
             loginAccountListener?.onLoginAccountResponse(false, null, "请输入12个助记词")
@@ -78,7 +82,9 @@ class AccountInteract(
         login(mnemonics, passWord)
     }
 
-    //登录
+    /***
+     * 登录
+     */
     private fun login(mnemonics: String, passWord: String) {
 
         val seed = SeedCalculator().withWordsFromWordList(English.INSTANCE)
@@ -101,7 +107,9 @@ class AccountInteract(
         }
     }
 
-    //获取余额
+    /***
+     * 获取余额
+     */
     private fun getBalance(walletAccount: WalletAccount) {
         GlobalScope.launch {
 
@@ -121,7 +129,9 @@ class AccountInteract(
         }
     }
 
-    //刷新余额
+    /***
+     * 刷新余额
+     */
     fun refreshBalance() {
         if (walletAccount == null) {
             walletAccount = repository.getWalletAccount()
@@ -131,6 +141,7 @@ class AccountInteract(
         GlobalScope.launch {
 
             val web3j = Web3jFactory.build(HttpService(testEthService))
+
             try {
                 val ethGetBalance =
                     web3j.ethGetBalance(walletAccount!!.address, DefaultBlockParameterName.LATEST)
@@ -146,6 +157,9 @@ class AccountInteract(
         }
     }
 
+    /***
+     * 创建身份
+     */
     fun buildAccount(name: String?, password: String?, passwordConfirm: String?) {
         if (name == null || name.isEmpty()) {
             buildAccountListener?.onBuildAccountResponse(false, null, "身份名不能为空")
@@ -170,6 +184,9 @@ class AccountInteract(
         buildAccount(password)
     }
 
+    /***
+     * 创建身份
+     */
     private fun buildAccount(password: String) {
 
         val mnemonics = buildMnemonics()
@@ -207,20 +224,24 @@ class AccountInteract(
 
     }
 
-    //转账
+    /***
+     * 转账
+     */
     fun transfer(toAddress: String?, amount: String?) {
-        if (amount != null) {
+        if (amount != null && amount.isNotEmpty()) {
             try {
                 val value = BigDecimal(amount)
                 transfer(toAddress, value)
-            } catch (e: RuntimeException) {
+                return
+            } catch (e: Exception) {
             }
-        } else {
-            transferListener?.onTransferResponse(false, null, "转账金额输入有误")
         }
+        transferListener?.onTransferResponse(false, null, "转账金额输入有误")
     }
 
-    //转账
+    /***
+     * 转账
+     */
     fun transfer(toAddress: String?, amount: BigDecimal?) {
         if (toAddress == null || toAddress.isEmpty()) {
             transferListener?.onTransferResponse(false, null, "转账地址为空")
@@ -233,7 +254,9 @@ class AccountInteract(
         transferEth(toAddress, amount)
     }
 
-    //转账
+    /***
+     * 转账
+     */
     private fun transferEth(toAddress: String, amount: BigDecimal) {
 
         val web3j = Web3jFactory.build(HttpService(testEthService))
@@ -244,18 +267,20 @@ class AccountInteract(
 
         GlobalScope.launch {
 
-            var transactionReceipt: TransactionReceipt? = null
             try {
-                transactionReceipt =
+                var transactionReceipt =
                     Transfer.sendFunds(web3j, credential, toAddress, amount, Convert.Unit.ETHER)
                         .send()
+                transferListener?.onTransferResponse(true, transactionReceipt, "转账申请已提交")
             } catch (e: Exception) {
-                e.printStackTrace()
+                transferListener?.onTransferResponse(false, null, "转账失败")
             }
-            transferListener?.onTransferResponse(true, transactionReceipt, "转账申请已提交")
         }
     }
 
+    /***
+     * 创建12助记词
+     */
     private fun buildMnemonics(): String {
         val mnemonicsSb = StringBuilder()
         val entropy = ByteArray(Words.TWELVE.byteLength())
@@ -264,6 +289,9 @@ class AccountInteract(
         return mnemonicsSb.toString()
     }
 
+    /***
+     * 登录回调接口
+     */
     interface OnLoginAccountListener {
         fun onLoginAccountResponse(
             result: Boolean,
@@ -272,14 +300,23 @@ class AccountInteract(
         )
     }
 
+    /***
+     * 登出回调接口
+     */
     interface OnLogOutAccountListener {
         fun onLogOutAccountResponse()
     }
 
+    /***
+     * 刷新身份回调接口
+     */
     interface OnRefreshAccountListener {
         fun onAccountRefreshResponse(account: WalletAccount?)
     }
 
+    /***
+     * 创建回调接口
+     */
     interface OnBuildAccountListener {
         fun onBuildAccountResponse(result: Boolean, account: WalletAccount?, tip: String)
     }

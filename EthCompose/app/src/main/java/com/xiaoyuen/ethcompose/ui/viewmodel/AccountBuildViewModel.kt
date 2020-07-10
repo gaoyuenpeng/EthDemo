@@ -11,16 +11,13 @@ import com.xiaoyuen.ethcompose.interact.AccountInteract
 class AccountBuildViewModel(context: Context) : BaseViewModel(context),
     AccountInteract.OnBuildAccountListener {
 
-    private var accountInteract = AccountInteract(context = context, buildAccountListener = this)
+    private var accountInteract = AccountInteract(context, buildAccountListener = this)
 
     private var permission: RxPermissions? = null
 
     //创建身份
     fun buildAccount(name: String?, password: String?, passwordConfirm: String?) {
-
-        if (permission == null) {
-            permission = RxPermissions(context as Activity)
-        }
+        if (permission == null) permission = RxPermissions(context as Activity)
 
         //获取手机存储权限
         permission!!.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe { granted ->

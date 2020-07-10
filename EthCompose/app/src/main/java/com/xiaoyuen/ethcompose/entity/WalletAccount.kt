@@ -4,11 +4,11 @@ import org.web3j.crypto.Credentials
 
 //钱包类
 class WalletAccount(
-    var privateKey: String,
-    var publicKey: String,
-    var address: String,
-    var mnemonics: String,
-    var balance: Float = 0f
+    var privateKey: String,//私钥
+    var publicKey: String,//公钥
+    var address: String,//钱包地址
+    var mnemonics: String,//助记词
+    var balance: Float = 0f//余额
 ) {
 
     constructor(credentials: Credentials, mnemonics: String) :

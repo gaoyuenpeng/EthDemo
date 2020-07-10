@@ -45,7 +45,7 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
     @Composable
     override fun loadCompose() {
 
-        CommonContent("收款", backgroundColor = MyThemeColor.primary, onBackClick = { finish() }) {
+        CommonContent("收款", backgroundColor = MainBlue, onBackClick = { finish() }) {
             qrCode()
             transferAmount()
         }
@@ -63,7 +63,7 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
             ) {
                 Text(
                     text = "扫描二维码,转入 ${collectionValueModel.value} ETH",
-                    style = TextStyle(color = Color(0xff6e6e6e), fontSize = TextUnit.Sp(16)),
+                    style = TextStyle(color = TextGreyHint, fontSize = TextUnit.Sp(16)),
                     modifier = Modifier.padding(top = 20.dp)
                 )
                 DividerTransparent()
@@ -77,7 +77,7 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
                 }
                 Text(
                     text = "钱包地址",
-                    style = TextStyle(color = Color(0xff6e6e6e), fontSize = TextUnit.Sp(16)),
+                    style = TextStyle(color = TextGreyHint, fontSize = TextUnit.Sp(16)),
                     modifier = Modifier.padding(top = 30.dp)
                 )
                 Text(
@@ -125,7 +125,7 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
                         )
                         amountState.value = TextFieldValue()
                     },
-                    backgroundColor = Color(0xffededed),
+                    backgroundColor = MainGrey,
                     modifier = Modifier.padding(10.dp)
                 ) {
                     Text(text = "重置", color = TextBlack)

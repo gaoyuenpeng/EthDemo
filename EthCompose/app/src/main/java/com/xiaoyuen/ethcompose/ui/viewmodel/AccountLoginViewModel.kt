@@ -8,7 +8,7 @@ import com.xiaoyuen.ethcompose.interact.AccountInteract
 class AccountLoginViewModel(context: Context) : BaseViewModel(context),
     AccountInteract.OnLoginAccountListener {
 
-    private var getAccountInteract = AccountInteract(context = context, loginAccountListener = this)
+    private var getAccountInteract = AccountInteract(context, loginAccountListener = this)
 
     //登录
     fun login(helpWords: String?, passWord: String?, passWordConfirm: String?) {

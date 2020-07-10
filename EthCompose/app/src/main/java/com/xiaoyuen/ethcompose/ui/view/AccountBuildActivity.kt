@@ -23,13 +23,12 @@ class AccountBuildActivity : BaseComposeActivity<AccountBuildViewModel>() {
     @Composable
     override fun loadCompose() {
 
-        val nameState = state { TextFieldValue("") }
-        val passwordState = state { TextFieldValue("") }
-        val passwordConfirmState = state { TextFieldValue("") }
+        val nameState = state { TextFieldValue("gaoyuenpeng123456") }
+        val passwordState = state { TextFieldValue("gao123456") }
+        val passwordConfirmState = state { TextFieldValue("gao123456") }
 
         CommonContent("创建身份",
             modifier = Modifier.padding(10.dp),
-            backgroundColor = Color(0xFFededed),
             onBackClick = { finish() }) {
             Stack(modifier = Modifier.fillMaxSize()) {
                 Column(modifier = Modifier.fillMaxSize()) {

@@ -21,6 +21,9 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
 
     abstract fun loadView()
 
+    /***
+     * 设置通用的liveData：toast
+     */
     open fun initLiveData() {
 
         viewModel = initViewModel()
@@ -31,6 +34,9 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
 
     }
 
+    /***
+     * 初始化viewModel
+     */
     open fun initViewModel(): VM? = null
 
 }

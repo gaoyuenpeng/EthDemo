@@ -31,7 +31,6 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
         val passwordConfirmState = state { TextFieldValue("gao251977337") }
 
         CommonContent("恢复身份",
-            backgroundColor = Color(0xFFededed),
             onBackClick = { finish() }) {
 
             Stack(modifier = Modifier.fillMaxSize()) {

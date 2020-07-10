@@ -4,6 +4,7 @@ import androidx.compose.Model
 import androidx.ui.foundation.TextFieldValue
 import com.xiaoyuen.ethcompose.R
 
+//首页tab
 data class TabItemModel(
     val name: String,
     val iconNormal: Int,
@@ -11,6 +12,7 @@ data class TabItemModel(
     val index: Int
 )
 
+//首页tab item
 val HomeTabItems = listOf(
     TabItemModel(
         "交易",
@@ -26,26 +28,18 @@ val HomeTabItems = listOf(
     )
 )
 
-@Model
-class TransferAddressModel {
-    var address: String = ""
-        get() = if (field.isEmpty()) "" else field
-}
-
-@Model
-class TransferValueModel {
-    var amount: String = "0"
-        get() = if (field.isEmpty()) "0" else field
-}
-
+//string Model
 @Model
 class StringValueModel(var value: String = "")
 
+//boolean Model
 @Model
 data class BooleanValueModel(var value: Boolean = false)
 
+//TextFieldValue Model
 @Model
 class TextFieldValueValueModel(var value: TextFieldValue)
 
+//WalletAccount Model
 @Model
 class WalletValueModel(var walletAccount: WalletAccount?)

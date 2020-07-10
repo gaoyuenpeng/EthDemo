@@ -92,7 +92,7 @@ fun AlertDialog(
                             onClick = cancelButtonRequest,
                             backgroundColor = Color.White
                         ) {
-                            Text(cancelButton, color = MyThemeColor.primary)
+                            Text(cancelButton, color = MainBlue)
                         }
                     }
                     if (comfirmButton != null && comfirmButton.isNotEmpty()) {
@@ -101,7 +101,7 @@ fun AlertDialog(
                             backgroundColor = Color.White,
                             modifier = Modifier.padding(start = 10.dp)
                         ) {
-                            Text(comfirmButton, color = MyThemeColor.primary)
+                            Text(comfirmButton, color = MainBlue)
                         }
                     }
                 }
