@@ -2,15 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xiaoyuen.ethcompose">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".base.MyApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:autoRevokePermissions="allowed"
+        android:icon="@mipmap/icon_launcher_dog"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon_launcher_dog"
         android:supportsRtl="true"
         android:theme="@style/Theme.EthCompose">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.view.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.EthCompose.NoActionBar">
             <intent-filter>
@@ -19,6 +31,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.view.MainActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".ui.view.AccountBuildActivity" />
+        <activity android:name=".ui.view.AccountLoginActivity" />
+        <activity android:name=".ui.view.AccountBuildMnemonicsActivity" />
+        <activity android:name=".ui.view.CollectionActivity" />
+        <activity android:name=".ui.view.TransferActivity" />
+        <activity android:name=".scan.ScanCodeActivity" />
     </application>
 
 </manifest>
