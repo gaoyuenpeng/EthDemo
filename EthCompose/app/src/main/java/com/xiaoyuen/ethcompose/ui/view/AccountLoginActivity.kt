@@ -7,9 +7,11 @@ import androidx.ui.foundation.*
 import androidx.ui.input.KeyboardType
 import androidx.ui.layout.*
 import androidx.ui.material.*
+import androidx.ui.res.stringResource
 import androidx.ui.text.TextRange
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
+import com.xiaoyuen.ethcompose.R
 import com.xiaoyuen.ethcompose.base.BaseComposeActivity
 import com.xiaoyuen.ethcompose.compose.*
 import com.xiaoyuen.ethcompose.ui.viewmodel.AccountLoginViewModel
@@ -34,16 +36,14 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
         val passwordState = state { TextFieldValue("gao251977337") }
         val passwordConfirmState = state { TextFieldValue("gao251977337") }
 
-
-        CommonContent("恢复身份",
-            onBackClick = { finish() }) {
+        CommonContent(stringResource(R.string.restore_account), onBackClick = { finish() }) {
 
             Stack(modifier = Modifier.fillMaxSize()) {
 
                 Column(
                     modifier = Modifier.fillMaxSize().padding(horizontal = 10.dp, vertical = 10.dp)
                 ) {
-                    TextBold18("助记词")
+                    TextBold18(stringResource(id = R.string.mnemonics))
                     Card(
                         modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
                         elevation = 0.dp
@@ -53,7 +53,7 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
                                 .padding(10.dp),
                             keyboardType = KeyboardType.Text,
                             value = helpWordsState.value,
-                            hint = "助记词",
+                            hint = stringResource(id = R.string.mnemonics),
                             onValueChange = {
                                 if (it.text.contains("  ")) {
                                     val value = it.text.replace("  ", " ")
@@ -66,7 +66,10 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
                                 }
                             })
                     }
-                    TextBold18("钱包密码", modifier = Modifier.padding(top = 15.dp))
+                    TextBold18(
+                        stringResource(R.string.wallet_password),
+                        modifier = Modifier.padding(top = 15.dp)
+                    )
                     Card(
                         elevation = 0.dp,
                         modifier = Modifier.padding(top = 5.dp)
@@ -76,12 +79,15 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
                                 .fillMaxWidth().padding(10.dp),
                             value = passwordState.value,
                             keyboardType = KeyboardType.Password,
-                            hint = "密码",
+                            hint = stringResource(R.string.password),
                             onValueChange = {
                                 passwordState.value = it
                             })
                     }
-                    TextBold18("重复输入密码", modifier = Modifier.padding(top = 15.dp))
+                    TextBold18(
+                        stringResource(R.string.wallet_re_password),
+                        modifier = Modifier.padding(top = 15.dp)
+                    )
                     Card(
                         elevation = 0.dp,
                         modifier = Modifier.padding(top = 5.dp)
@@ -91,12 +97,12 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
                                 .fillMaxWidth().padding(10.dp),
                             value = passwordConfirmState.value,
                             keyboardType = KeyboardType.Password,
-                            hint = "密码",
+                            hint = stringResource(R.string.password),
                             onValueChange = {
                                 passwordConfirmState.value = it
                             })
                     }
-                    CommonButton(title = "恢复身份",
+                    CommonButton(title = stringResource(R.string.restore_account),
                         modifier = Modifier.padding(top = 30.dp),
                         onClick = {
                             viewModel?.login(

@@ -6,7 +6,9 @@ import androidx.ui.core.Modifier
 import androidx.ui.foundation.*
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
+import androidx.ui.res.stringResource
 import androidx.ui.unit.dp
+import com.xiaoyuen.ethcompose.R
 import com.xiaoyuen.ethcompose.base.BaseComposeActivity
 import com.xiaoyuen.ethcompose.compose.*
 import com.xiaoyuen.ethcompose.entity.StringListValueModel
@@ -30,11 +32,15 @@ class AccountBuildMnemonicsActivity : BaseComposeActivity<AccountBuildMnemonicsV
 
     @Composable
     override fun loadCompose() {
-        CommonContent("备份助记词",
+        CommonContent(
+            stringResource(id = R.string.backups_mnemonics),
             backgroundColor = Color.White,
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp),
             onBackClick = { finish() }) {
-            TextBold18("请按顺序抄写助记词，确保备份正确", modifier = Modifier.padding(top = 10.dp))
+            TextBold18(
+                stringResource(id = R.string.remember_mnemonics_inorder),
+                modifier = Modifier.padding(top = 10.dp)
+            )
             Box(
                 modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
                 backgroundColor = TextGreyF3
@@ -43,7 +49,7 @@ class AccountBuildMnemonicsActivity : BaseComposeActivity<AccountBuildMnemonicsV
                     Mnemonics(mnemonicsValueModel.value!!)
                 }
             }
-            CommonButton(title = "已确认备份",
+            CommonButton(title = stringResource(id = R.string.confirm_backups),
                 modifier = Modifier.padding(top = 30.dp),
                 onClick = { viewModel?.goMain() })
         }

@@ -1,3 +1,50 @@
 <resources>
     <string name="app_name">EthCompose</string>
+
+    <string name="transaction">交易</string>
+    <string name="wallet">钱包</string>
+    <string name="build_account">创建身份</string>
+    <string name="build_success">创建成功</string>
+    <string name="account_name">身份名</string>
+    <string name="account_password">密码</string>
+    <string name="account_re_password">确认密码</string>
+    <string name="build">创建</string>
+    <string name="backups_mnemonics">备份助记词</string>
+    <string name="remember_mnemonics_inorder">请按顺序抄写助记词，确保备份正确</string>
+    <string name="confirm_backups">已确认备份</string>
+    <string name="restore_account">恢复身份</string>
+    <string name="mnemonics">助记词</string>
+    <string name="wallet_password">钱包密码</string>
+    <string name="password">密码</string>
+    <string name="wallet_re_password">重复输入密码</string>
+    <string name="collection">收款</string>
+    <string name="wallet_address">钱包地址</string>
+    <string name="collection_amount">收款金额</string>
+    <string name="reset">重置</string>
+    <string name="setting">设置</string>
+    <string name="transfer_account">转账</string>
+    <string name="receiving_address">收款地址</string>
+    <string name="balance">余额</string>
+    <string name="transfer_amount">转账金额</string>
+    <string name="account_name_cannot_be_empty">身份名不能为空</string>
+    <string name="password_cannot_be_empty">密码不能为空</string>
+    <string name="confirm_password_cannot_be_empty">确认密码不能为空</string>
+    <string name="the_password_input_is_inconsistent">密码输入不一致</string>
+    <string name="please_input_12_mnemonics">请输入12个助记词</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="please_input_confirm_password">请输入确认密码</string>
+    <string name="transfer_address_is_empty">转账地址为空</string>
+    <string name="please_input_the_transfer_amount">请输入转账金额</string>
+    <string name="transfer_success">转账完成</string>
+    <string name="transfer_failure">转账失败</string>
+    <string name="scan_to_transfer">扫描二维码,转入</string>
+    <string name="loading">加载中</string>
+    <string name="address">地址</string>
+    <string name="private_key">私钥</string>
+    <string name="public_key">公钥</string>
+    <string name="logout">退出登录</string>
+    <string name="confirm_exit_account">确定退出账号？</string>
+    <string name="no">暂不</string>
+    <string name="sure">确定</string>
+
 </resources>

@@ -6,10 +6,13 @@ import androidx.ui.core.Modifier
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.clickable
 import androidx.ui.layout.*
+import androidx.ui.res.stringResource
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import com.xiaoyuen.ethcompose.entity.WalletAccount
 import com.xiaoyuen.ethcompose.ui.viewmodel.MainViewModel
+import com.xiaoyuen.ethcompose.R
+
 
 @Preview
 @Composable
@@ -37,43 +40,43 @@ fun WalletPage(wallet: WalletAccount?, mainViewModel: MainViewModel?) {
                 Column {
                     DividerTransparent()
                     ValueItemWithCorner(
-                        title = "地址",
+                        title = stringResource(R.string.address),
                         value = walletAccount.address
                     )
                     DividerTransparent()
                     ValueItemWithCorner(
-                        title = "余额",
+                        title = stringResource(R.string.balance),
                         value = "${walletAccount.balance} eth"
                     )
                     DividerTransparent()
                     ValueItemWithCorner(
-                        title = "私钥",
+                        title = stringResource(R.string.private_key),
                         value = walletAccount.privateKey
                     )
                     DividerTransparent()
                     ValueItemWithCorner(
-                        title = "公钥",
+                        title = stringResource(R.string.public_key),
                         value = walletAccount.publicKey
                     )
                     DividerTransparent()
                     ValueItemWithCorner(
-                        title = "助记词",
+                        title = stringResource(R.string.mnemonics),
                         value = walletAccount.mnemonics,
-                        modifier = Modifier.clickable(onClick = {mainViewModel?.goMnemonics()})
+                        modifier = Modifier.clickable(onClick = { mainViewModel?.goMnemonics() })
                     )
                     DividerTransparent(height = 50.dp)
                     CommonButton(
-                        title = "退出登录",
+                        title = stringResource(R.string.logout),
                         modifier = Modifier.padding(horizontal = 10.dp),
                         onClick = {
                             showDialog.value = true
                         })
 
                     if (showDialog.value) {
-                        AlertDialog(text = "确定退出账号？",
+                        AlertDialog(text = stringResource(R.string.confirm_exit_account),
                             onCloseRequest = { showDialog.value = false },
-                            cancelButton = "暂不",
-                            comfirmButton = "确定",
+                            cancelButton = stringResource(R.string.no),
+                            comfirmButton = stringResource(R.string.sure),
                             cancelButtonRequest = { showDialog.value = false },
                             comfirmButtonRequest = {
                                 showDialog.value = false

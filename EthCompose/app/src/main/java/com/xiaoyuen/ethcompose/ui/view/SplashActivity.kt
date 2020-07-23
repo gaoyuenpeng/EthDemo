@@ -8,6 +8,7 @@ import androidx.ui.foundation.Image
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.res.imageResource
+import androidx.ui.res.stringResource
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import com.xiaoyuen.ethcompose.base.BaseComposeActivity
@@ -37,15 +38,15 @@ class SplashActivity : BaseComposeActivity<SplashViewModel>() {
                     contentScale = ContentScale.Fit
                 )
                 CommonButton(
-                    title = "恢复身份",
-                    modifier = Modifier.width(width = 200.dp).padding(top = 150.dp),
+                    title = stringResource(R.string.restore_account),
+                    modifier = Modifier.padding(top = 150.dp, start = 20.dp, end = 20.dp),
                     onClick = {
                         viewModel?.goLiginAccount()
                     }
                 )
                 CommonButton(
-                    title = "创建身份",
-                    modifier = Modifier.width(width = 200.dp).padding(top = 20.dp),
+                    title = stringResource(R.string.build_account),
+                    modifier = Modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp),
                     onClick = { viewModel?.goBuildAccount() }
                 )
             }

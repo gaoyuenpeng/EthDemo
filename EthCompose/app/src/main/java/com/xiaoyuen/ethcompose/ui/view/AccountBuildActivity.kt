@@ -8,8 +8,9 @@ import androidx.ui.graphics.Color
 import androidx.ui.input.KeyboardType
 import androidx.ui.layout.*
 import androidx.ui.material.*
-import androidx.ui.tooling.preview.Preview
+import androidx.ui.res.stringResource
 import androidx.ui.unit.dp
+import com.xiaoyuen.ethcompose.R
 import com.xiaoyuen.ethcompose.base.BaseComposeActivity
 import com.xiaoyuen.ethcompose.compose.*
 import com.xiaoyuen.ethcompose.ui.viewmodel.AccountBuildViewModel
@@ -27,12 +28,12 @@ class AccountBuildActivity : BaseComposeActivity<AccountBuildViewModel>() {
         val passwordState = state { TextFieldValue("") }
         val passwordConfirmState = state { TextFieldValue("") }
 
-        CommonContent("创建身份",
+        CommonContent(stringResource(id = R.string.build_account),
             modifier = Modifier.padding(10.dp),
             onBackClick = { finish() }) {
             Stack(modifier = Modifier.fillMaxSize()) {
                 Column(modifier = Modifier.fillMaxSize()) {
-                    TextBold18("身份名")
+                    TextBold18(stringResource(id = R.string.account_name))
                     Card(
                         modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
                         elevation = 0.dp
@@ -42,12 +43,15 @@ class AccountBuildActivity : BaseComposeActivity<AccountBuildViewModel>() {
                                 .fillMaxWidth(),
                             value = nameState.value,
                             keyboardType = KeyboardType.Password,
-                            hint = "身份名",
+                            hint = stringResource(id = R.string.account_name),
                             onValueChange = {
                                 nameState.value = it
                             })
                     }
-                    TextBold18("密码", modifier = Modifier.padding(top = 15.dp))
+                    TextBold18(
+                        stringResource(id = R.string.account_password),
+                        modifier = Modifier.padding(top = 15.dp)
+                    )
                     Card(
                         modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
                         elevation = 0.dp
@@ -57,12 +61,15 @@ class AccountBuildActivity : BaseComposeActivity<AccountBuildViewModel>() {
                                 .fillMaxWidth(),
                             value = passwordState.value,
                             keyboardType = KeyboardType.Password,
-                            hint = "密码",
+                            hint = stringResource(id = R.string.account_password),
                             onValueChange = {
                                 passwordState.value = it
                             })
                     }
-                    TextBold18("重复密码", modifier = Modifier.padding(top = 15.dp))
+                    TextBold18(
+                        stringResource(id = R.string.account_re_password),
+                        modifier = Modifier.padding(top = 15.dp)
+                    )
                     Card(
                         modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
                         elevation = 0.dp
@@ -72,13 +79,13 @@ class AccountBuildActivity : BaseComposeActivity<AccountBuildViewModel>() {
                                 .fillMaxWidth(),
                             value = passwordConfirmState.value,
                             keyboardType = KeyboardType.Password,
-                            hint = "重复密码",
+                            hint = stringResource(id = R.string.account_re_password),
                             onValueChange = {
                                 passwordConfirmState.value = it
                             })
                     }
                     Divider(color = Color.Transparent, modifier = Modifier.height(30.dp))
-                    CommonButton(title = "创建",
+                    CommonButton(title = stringResource(id = R.string.build),
                         modifier = Modifier.padding(top = 30.dp),
                         onClick = {
                             viewModel?.buildAccount(

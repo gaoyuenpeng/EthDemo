@@ -3,6 +3,7 @@ package com.xiaoyuen.ethcompose.ui.model
 import android.content.Context
 import android.os.Environment
 import androidx.lifecycle.MutableLiveData
+import androidx.ui.res.stringResource
 import com.xiaoyuen.ethcompose.R
 import com.xiaoyuen.ethcompose.base.Config
 import com.xiaoyuen.ethcompose.entity.RequestResult
@@ -168,7 +169,7 @@ class AccountRepository(
                         RequestResult(
                             0,
                             true,
-                            "创建成功",
+                            context.getString(R.string.build_success),
                             accountWallet
                         )
                     )

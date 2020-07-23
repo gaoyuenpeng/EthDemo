@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">EthCompose</string>
+
+    <string name="transaction">Transaction</string>
+    <string name="wallet">Wallet</string>
+    <string name="build_account">Build account</string>
+    <string name="build_success">Build success</string>
+    <string name="account_name">Account name</string>
+    <string name="account_password">Password</string>
+    <string name="account_re_password">Confirm password</string>
+    <string name="build">Build</string>
+    <string name="backups_mnemonics">Backups mnemonics</string>
+    <string name="remember_mnemonics_inorder">Please copy the mnemonics in order to ensure the correct backup</string>
+    <string name="confirm_backups">Backup confirmed</string>
+    <string name="restore_account">Restoration of account</string>
+    <string name="mnemonics">Mnemonics</string>
+    <string name="wallet_password">Password</string>
+    <string name="password">Password</string>
+    <string name="wallet_re_password">Confirm password</string>
+    <string name="collection">Collection</string>
+    <string name="wallet_address">Wallet address</string>
+    <string name="collection_amount">Collection amount</string>
+    <string name="reset">Reset</string>
+    <string name="setting">Set</string>
+    <string name="transfer_account">Transfer account</string>
+    <string name="receiving_address">Receiving address</string>
+    <string name="balance">Balance</string>
+    <string name="transfer_amount">Transfer amount</string>
+    <string name="account_name_cannot_be_empty">Account name cannot be empty</string>
+    <string name="password_cannot_be_empty">Password cannot be empty</string>
+    <string name="confirm_password_cannot_be_empty">Confirm password cannot be empty</string>
+    <string name="the_password_input_is_inconsistent">The password input is inconsistent</string>
+    <string name="please_input_12_mnemonics">Please input 12 mnemonics</string>
+    <string name="please_input_password">Please input password</string>
+    <string name="please_input_confirm_password">Please input confirm password</string>
+    <string name="transfer_address_is_empty">Transfer address is empty</string>
+    <string name="please_input_the_transfer_amount">Please input the Transfer amount</string>
+    <string name="transfer_success">Transfer success</string>
+    <string name="transfer_failure">Transfer failure</string>
+    <string name="scan_to_transfer">Scan QR code,transfer </string>
+    <string name="loading">Loading</string>
+    <string name="address">Address</string>
+    <string name="private_key">Private key</string>
+    <string name="public_key">Public key</string>
+    <string name="logout">Logout</string>
+    <string name="confirm_exit_account">Confirm exit account？</string>
+    <string name="no">No</string>
+    <string name="sure">Yes</string>
+
+</resources>

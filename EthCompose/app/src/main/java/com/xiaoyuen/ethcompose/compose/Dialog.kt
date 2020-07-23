@@ -10,14 +10,16 @@ import androidx.ui.material.Button
 import androidx.ui.material.Card
 import androidx.ui.material.CircularProgressIndicator
 import androidx.ui.material.Divider
+import androidx.ui.res.stringResource
 import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontWeight
 import androidx.ui.unit.TextUnit
 import androidx.ui.unit.dp
+import com.xiaoyuen.ethcompose.R
 
 
 @Composable
-fun LoadingProgressBar(title: String = "加载中") {
+fun LoadingProgressBar(title: String = stringResource(R.string.loading)) {
 
     Stack(
         modifier = Modifier.fillMaxWidth()

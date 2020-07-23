@@ -14,6 +14,7 @@ import androidx.ui.layout.fillMaxHeight
 import androidx.ui.layout.size
 import androidx.ui.material.BottomAppBar
 import androidx.ui.res.imageResource
+import androidx.ui.res.stringResource
 import androidx.ui.unit.TextUnit
 import androidx.ui.unit.dp
 import com.xiaoyuen.ethcompose.entity.HomeTabItems
@@ -38,7 +39,7 @@ fun HomeTabItem(item: TabItemModel, pageState: Int, onClick: () -> Unit) {
                 contentScale = ContentScale.Fit
             )
             Text(
-                item.name,
+                stringResource(item.name),
                 color = color,
                 fontSize = TextUnit.Sp(16)
             )

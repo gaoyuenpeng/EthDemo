@@ -7,15 +7,16 @@ import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.core.drawOpacity
 import androidx.ui.foundation.*
-import androidx.ui.graphics.Color
 import androidx.ui.input.KeyboardType
 import androidx.ui.layout.*
 import androidx.ui.material.*
+import androidx.ui.res.stringResource
 import androidx.ui.text.TextStyle
 import androidx.ui.text.style.TextAlign
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.TextUnit
 import androidx.ui.unit.dp
+import com.xiaoyuen.ethcompose.R
 import com.xiaoyuen.ethcompose.base.BaseComposeActivity
 import com.xiaoyuen.ethcompose.compose.*
 import com.xiaoyuen.ethcompose.entity.StringValueModel
@@ -45,7 +46,10 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
     @Composable
     override fun loadCompose() {
 
-        CommonContent("收款", backgroundColor = MainBlue, onBackClick = { finish() }) {
+        CommonContent(
+            stringResource(R.string.collection),
+            backgroundColor = MainBlue,
+            onBackClick = { finish() }) {
             qrCode()
             transferAmount()
         }
@@ -62,7 +66,7 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
                 horizontalGravity = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "扫描二维码,转入 ${collectionValueModel.value} ETH",
+                    text = stringResource(R.string.scan_to_transfer) + "${collectionValueModel.value} ETH",
                     style = TextStyle(color = TextGreyHint, fontSize = TextUnit.Sp(16)),
                     modifier = Modifier.padding(top = 20.dp)
                 )
@@ -76,7 +80,7 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
                     )
                 }
                 Text(
-                    text = "钱包地址",
+                    text = stringResource(R.string.wallet_address),
                     style = TextStyle(color = TextGreyHint, fontSize = TextUnit.Sp(16)),
                     modifier = Modifier.padding(top = 30.dp)
                 )
@@ -112,7 +116,7 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
                     modifier = Modifier.padding(10.dp).weight(1f),
                     value = amountState.value,
                     keyboardType = KeyboardType.Number,
-                    hint = "收款金额",
+                    hint = stringResource(R.string.collection_amount),
                     onValueChange = {
                         amountState.value = it
                     })
@@ -128,7 +132,7 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
                     backgroundColor = MainGrey,
                     modifier = Modifier.padding(10.dp)
                 ) {
-                    Text(text = "重置", color = TextBlack)
+                    Text(text = stringResource(R.string.reset), color = TextBlack)
                 }
                 Button(onClick = {
                     if (amountState.value.text.isNotEmpty()) {
@@ -139,7 +143,7 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
                         )
                     }
                 }) {
-                    Text(text = "设置")
+                    Text(text = stringResource(R.string.setting))
                 }
             }
         }

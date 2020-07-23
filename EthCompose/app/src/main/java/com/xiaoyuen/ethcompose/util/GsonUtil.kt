@@ -42,7 +42,7 @@ object GsonUtil {
     fun <T> formJsonToList(json: String?, classOfT: Class<T>?): ArrayList<T>? {
         try {
             val data = JSONArray(json)
-            if (data != null && data.length() > 0) {
+            if (data.length() > 0) {
                 val models = ArrayList<T>()
                 for (i in 0 until data.length()) {
                     val obj = data.optJSONObject(i)

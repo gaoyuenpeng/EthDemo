@@ -5,8 +5,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
+import androidx.ui.res.stringResource
 import com.tbruyelle.rxpermissions.RxPermissions
-import com.xiaoyuen.ethcompose.entity.RequestResult
+import com.xiaoyuen.ethcompose.R
 import com.xiaoyuen.ethcompose.entity.WalletAccount
 import com.xiaoyuen.ethcompose.scan.ScanCodeActivity
 import com.xiaoyuen.ethcompose.scan.ScanResultModel
@@ -57,12 +58,12 @@ class TransferViewModel(context: Context) : BaseViewModel(context) {
     fun transfer(address: String?, amount: String?) {
 
         if (address == null || address.isEmpty()) {
-            toastMsgData?.postValue("转账地址为空")
+            toastMsgData?.postValue(context.getString(R.string.transfer_address_is_empty))
             return
         }
 
         if (amount == null || amount.isEmpty()) {
-            toastMsgData?.postValue("请输入转账金额")
+            toastMsgData?.postValue(context.getString(R.string.please_input_the_transfer_amount))
             return
         }
 
@@ -78,10 +79,10 @@ class TransferViewModel(context: Context) : BaseViewModel(context) {
 
                 loadingData.postValue(false)
                 if (transactionReceipt != null) {
-                    toastMsgData.postValue("转账完成")
+                    toastMsgData.postValue(context.getString(R.string.transfer_success))
                     transferResultData.postValue(true)
                 } else {
-                    toastMsgData.postValue("转账失败")
+                    toastMsgData.postValue(context.getString(R.string.transfer_address_is_empty))
                     transferResultData.postValue(false)
                 }
 
@@ -90,7 +91,7 @@ class TransferViewModel(context: Context) : BaseViewModel(context) {
         } catch (e: Exception) {
             e.printStackTrace()
             loadingData.postValue(false)
-            toastMsgData?.postValue("转账失败")
+            toastMsgData?.postValue(context.getString(R.string.transfer_failure))
         }
 
     }

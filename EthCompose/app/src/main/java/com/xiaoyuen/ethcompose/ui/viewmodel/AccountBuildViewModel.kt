@@ -6,7 +6,9 @@ import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.ui.res.stringResource
 import com.tbruyelle.rxpermissions.RxPermissions
+import com.xiaoyuen.ethcompose.R
 import com.xiaoyuen.ethcompose.entity.RequestResult
 import com.xiaoyuen.ethcompose.entity.WalletAccount
 import com.xiaoyuen.ethcompose.ui.model.AccountRepository
@@ -53,23 +55,24 @@ class AccountBuildViewModel(context: Context) : BaseViewModel(context) {
 
     //创建身份
     private fun build(name: String?, password: String?, passwordConfirm: String?) {
+
         if (name == null || name.isEmpty()) {
-            toastMsgData.postValue("身份名不能为空")
+            toastMsgData.postValue(context.getString(R.string.account_name_cannot_be_empty))
             return
         }
 
         if (password == null || password.isEmpty()) {
-            toastMsgData.postValue("密码不能为空")
+            toastMsgData.postValue(context.getString(R.string.password_cannot_be_empty))
             return
         }
 
         if (passwordConfirm == null || passwordConfirm.isEmpty()) {
-            toastMsgData.postValue("重复密码不能为空")
+            toastMsgData.postValue(context.getString(R.string.confirm_password_cannot_be_empty))
             return
         }
 
         if (password != passwordConfirm) {
-            toastMsgData.postValue("密码输入不一致")
+            toastMsgData.postValue(context.getString(R.string.the_password_input_is_inconsistent))
             return
         }
 

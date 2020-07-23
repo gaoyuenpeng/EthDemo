@@ -9,6 +9,7 @@ import androidx.ui.layout.*
 import androidx.ui.material.Card
 import androidx.ui.material.MaterialTheme
 import androidx.ui.res.imageResource
+import androidx.ui.res.stringResource
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.TextUnit
@@ -53,12 +54,12 @@ fun TransactionPage(wallet: WalletAccount?, mainViewModel: MainViewModel?) {
                 }
                 DividerTransparent(20.dp)
                 CommonButton(
-                    title = "收款",
+                    title = stringResource(R.string.collection),
                     modifier = Modifier.padding(horizontal = 10.dp),
                     onClick = { mainViewModel?.goIncome() })
                 DividerTransparent()
                 CommonButton(
-                    title = "转账",
+                    title = stringResource(R.string.transfer_account),
                     modifier = Modifier.padding(horizontal = 10.dp),
                     onClick = { mainViewModel?.goTransfer() })
             }

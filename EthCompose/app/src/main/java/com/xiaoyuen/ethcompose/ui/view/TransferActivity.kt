@@ -13,6 +13,7 @@ import androidx.ui.layout.*
 import androidx.ui.material.Card
 import androidx.ui.material.IconButton
 import androidx.ui.res.imageResource
+import androidx.ui.res.stringResource
 import androidx.ui.text.TextRange
 import androidx.ui.text.TextStyle
 import androidx.ui.text.style.TextAlign
@@ -61,7 +62,7 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
     override fun loadCompose() {
 
         CommonContent(
-            "转账",
+            stringResource(R.string.transfer_account),
             onBackClick = { finish() }) {
 
             Stack(modifier = Modifier.fillMaxSize()) {
@@ -87,7 +88,7 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
                                     )
                                 ),
                                 keyboardType = KeyboardType.Password,
-                                hint = "收款地址",
+                                hint = stringResource(R.string.receiving_address),
                                 onValueChange = {
                                     transferAddressModel.value = it.text
                                 }
@@ -112,7 +113,7 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
                                 .defaultMinSizeConstraints(minHeight = 50.dp)
                         ) {
                             TextBold18(
-                                text = "余额",
+                                text = stringResource(R.string.balance),
                                 modifier = Modifier.gravity(Alignment.CenterStart)
                                     .padding(start = 10.dp)
                             )
@@ -136,7 +137,7 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
                                 .defaultMinSizeConstraints(minHeight = 50.dp)
                         ) {
                             TextBold18(
-                                text = "转账金额",
+                                text = stringResource(R.string.transfer_amount),
                                 modifier = Modifier.padding(start = 10.dp, end = 10.dp)
                             )
                             TextFieldWithHint(
@@ -168,7 +169,7 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
                         }
                     }
                     CommonButton(
-                        title = "转账",
+                        title = stringResource(R.string.transfer_account),
                         modifier = Modifier.padding(start = 10.dp, top = 50.dp, end = 10.dp),
                         onClick = {
                             viewModel?.transfer(

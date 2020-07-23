@@ -7,7 +7,7 @@ import org.web3j.abi.datatypes.Bool
 
 //首页tab
 data class TabItemModel(
-    val name: String,
+    val name: Int,
     val iconNormal: Int,
     val iconSelect: Int,
     val index: Int
@@ -16,13 +16,13 @@ data class TabItemModel(
 //首页tab item
 val HomeTabItems = listOf(
     TabItemModel(
-        "交易",
+        R.string.transaction,
         R.mipmap.icon_tab_transaction_normal,
         R.mipmap.icon_tab_transaction_select,
         0
     ),
     TabItemModel(
-        "钱包",
+        R.string.wallet,
         R.mipmap.icon_tab_wallet_normal,
         R.mipmap.icon_tab_wallet_select,
         1
