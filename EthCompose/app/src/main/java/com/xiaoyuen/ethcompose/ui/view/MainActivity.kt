@@ -53,6 +53,7 @@ class MainActivity : BaseComposeActivity<MainViewModel>() {
                 }
             }
         }
+
     }
 
 

@@ -8,7 +8,6 @@ import androidx.ui.core.Modifier
 import androidx.ui.foundation.Icon
 import androidx.ui.foundation.Text
 import androidx.ui.foundation.TextFieldValue
-import androidx.ui.graphics.Color
 import androidx.ui.input.KeyboardType
 import androidx.ui.layout.*
 import androidx.ui.material.Card
@@ -33,7 +32,7 @@ class TransferActivity : BaseComposeActivity<TransferViewModel>() {
 
     private val transferAddressModel = StringValueModel()
     private val transferValueModel = StringValueModel()
-    private val walletValueModel = WalletValueModel(null)
+    private val walletValueModel = WalletValueModel()
 
     override fun initViewModel(): TransferViewModel? = ViewModelFactory.buildForTransfer(this)
 

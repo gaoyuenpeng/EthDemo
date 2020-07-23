@@ -1,61 +1,46 @@
 package com.xiaoyuen.ethcompose.ui.viewmodel
 
 import android.content.Context
-import android.content.Intent
 import androidx.lifecycle.MutableLiveData
+import com.xiaoyuen.ethcompose.base.Config
 import com.xiaoyuen.ethcompose.entity.WalletAccount
-import com.xiaoyuen.ethcompose.interact.AccountInteract
-import com.xiaoyuen.ethcompose.ui.model.WalletAccountRepository
-import com.xiaoyuen.ethcompose.ui.view.SplashActivity
+import com.xiaoyuen.ethcompose.ui.model.AccountRepository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
-class MainViewModel(context: Context) : BaseViewModel(context),
-    AccountInteract.OnLogOutAccountListener,
-    AccountInteract.OnRefreshAccountListener {
+class MainViewModel(context: Context) : BaseViewModel(context) {
 
-    private val walletAccount = MutableLiveData<WalletAccount>()
+    private val walletAccountLiveData = MutableLiveData<WalletAccount>()
 
-    fun walletAccount(): MutableLiveData<WalletAccount> = walletAccount
+    fun walletAccount(): MutableLiveData<WalletAccount> = walletAccountLiveData
 
-    private var accountInteract =
-        AccountInteract(
-            context = context,
-            logOutAccountListener = this,
-            refreshAccountListener = this
-        )
-
-    private var walletAccountRepository = WalletAccountRepository(context)
+    private val accountRepository =
+        AccountRepository(context, walletAccountLiveData = walletAccountLiveData)
 
     //获取钱包
     fun getWalletAccount() {
-        val account = walletAccountRepository.getWalletAccount()
-        account?.let {
-            if (account.isAvailable()) {
-                walletAccount.postValue(account)
-            }
-        }
+        accountRepository.getWalletAccount()
     }
 
     //更新钱包余额
     fun refreshBalance() {
-        accountInteract.refreshBalance()
+
+        GlobalScope.launch {
+
+            val balance = accountRepository.getBalance()
+            if (balance > Config.balanceEmpty) {
+                accountRepository.setWalletAccountBalance(balance)
+                accountRepository.getWalletAccount()
+            }
+
+        }
     }
 
     //登出
     fun logOut() {
-        accountInteract.logOut()
-    }
-
-    //登出回调
-    override fun onLogOutAccountResponse() {
-        val intent = Intent(context, SplashActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        context.startActivity(intent)
-    }
-
-    //更新余额回调
-    override fun onAccountRefreshResponse(account: WalletAccount?) {
-        walletAccount.postValue(account)
+        accountRepository.clearAccount()
+        goSplash()
     }
 
 }

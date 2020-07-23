@@ -4,6 +4,7 @@ import androidx.compose.Composable
 import androidx.compose.state
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.VerticalScroller
+import androidx.ui.foundation.clickable
 import androidx.ui.layout.*
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
@@ -57,7 +58,8 @@ fun WalletPage(wallet: WalletAccount?, mainViewModel: MainViewModel?) {
                     DividerTransparent()
                     ValueItemWithCorner(
                         title = "助记词",
-                        value = walletAccount.mnemonics
+                        value = walletAccount.mnemonics,
+                        modifier = Modifier.clickable(onClick = {mainViewModel?.goMnemonics()})
                     )
                     DividerTransparent(height = 50.dp)
                     CommonButton(

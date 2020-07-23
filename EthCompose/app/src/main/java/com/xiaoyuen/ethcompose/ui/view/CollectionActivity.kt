@@ -31,9 +31,9 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
     override fun initViewModel(): CollectionViewModel? = ViewModelFactory.buildForCollection(this)
 
     override fun initView() {
-        viewModel?.addressData()?.observe(this, Observer {
-            addressValueModel.value = it
-            viewModel?.buildQrCode(it, collectionValueModel.value)
+        viewModel?.walletAccountLiveData()?.observe(this, Observer {
+            addressValueModel.value = it.address
+            viewModel?.buildQrCode(it.address, collectionValueModel.value)
         })
 
         viewModel?.qrCodeData()?.observe(this, Observer {

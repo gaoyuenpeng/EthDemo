@@ -4,7 +4,6 @@ import androidx.compose.Composable
 import androidx.compose.state
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.*
-import androidx.ui.graphics.Color
 import androidx.ui.input.KeyboardType
 import androidx.ui.layout.*
 import androidx.ui.material.*
@@ -25,10 +24,16 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
     @Composable
     override fun loadCompose() {
 
+//        val helpWordsState =
+//            state { TextFieldValue("") }
+//        val passwordState = state { TextFieldValue("") }
+//        val passwordConfirmState = state { TextFieldValue("") }
+
         val helpWordsState =
             state { TextFieldValue("when work aspect fat flush must tilt south summer column safe update") }
         val passwordState = state { TextFieldValue("gao251977337") }
         val passwordConfirmState = state { TextFieldValue("gao251977337") }
+
 
         CommonContent("恢复身份",
             onBackClick = { finish() }) {

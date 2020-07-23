@@ -6,16 +6,17 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import com.tbruyelle.rxpermissions.RxPermissions
+import com.xiaoyuen.ethcompose.entity.RequestResult
 import com.xiaoyuen.ethcompose.entity.WalletAccount
-import com.xiaoyuen.ethcompose.interact.AccountInteract
 import com.xiaoyuen.ethcompose.scan.ScanCodeActivity
 import com.xiaoyuen.ethcompose.scan.ScanResultModel
-import com.xiaoyuen.ethcompose.ui.model.WalletAccountRepository
-import org.web3j.protocol.core.methods.response.TransactionReceipt
+import com.xiaoyuen.ethcompose.ui.model.AccountRepository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.math.BigDecimal
 
 
-class TransferViewModel(context: Context) : BaseViewModel(context),
-    AccountInteract.OnTransferListener {
+class TransferViewModel(context: Context) : BaseViewModel(context) {
 
     companion object {
         const val requestScan = 101
@@ -23,13 +24,16 @@ class TransferViewModel(context: Context) : BaseViewModel(context),
 
     private var permission: RxPermissions? = null
 
-    private val walletAccount = MutableLiveData<WalletAccount>()//钱包
+    private val walletAccountLiveData = MutableLiveData<WalletAccount>()//钱包
     private val addressData = MutableLiveData<String>()//转账地址
     private val amountData = MutableLiveData<String>()//转账金额
     private val transferResultData = MutableLiveData<Boolean>()//转账结果
 
+    private var accountRepository =
+        AccountRepository(context, walletAccountLiveData = walletAccountLiveData)
+
     fun walletAccount(): MutableLiveData<WalletAccount> {
-        return walletAccount
+        return walletAccountLiveData
     }
 
     fun addressData(): MutableLiveData<String> {
@@ -44,27 +48,51 @@ class TransferViewModel(context: Context) : BaseViewModel(context),
         return transferResultData
     }
 
-    private var walletAccountRepository = WalletAccountRepository(context)
-
-    private var accountInteract: AccountInteract? = null
-
     //获取钱包
     fun getWalletAccount() {
-        val account = walletAccountRepository.getWalletAccount()
-        account?.let {
-            if (account.isAvailable()) {
-                walletAccount.postValue(account)
-            }
-        }
+        accountRepository.getWalletAccount()
     }
 
     //转账
     fun transfer(address: String?, amount: String?) {
-        loadingData.postValue(true)
-        if (accountInteract == null) {
-            accountInteract = AccountInteract(context, transferListener = this)
+
+        if (address == null || address.isEmpty()) {
+            toastMsgData?.postValue("转账地址为空")
+            return
         }
-        accountInteract!!.transfer(address, amount)
+
+        if (amount == null || amount.isEmpty()) {
+            toastMsgData?.postValue("请输入转账金额")
+            return
+        }
+
+        try {
+
+            val value = BigDecimal(amount)
+
+            loadingData.postValue(true)
+
+            GlobalScope.launch {
+
+                val transactionReceipt = accountRepository.transferEth1(address, value)
+
+                loadingData.postValue(false)
+                if (transactionReceipt != null) {
+                    toastMsgData.postValue("转账完成")
+                    transferResultData.postValue(true)
+                } else {
+                    toastMsgData.postValue("转账失败")
+                    transferResultData.postValue(false)
+                }
+
+            }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            loadingData.postValue(false)
+            toastMsgData?.postValue("转账失败")
+        }
+
     }
 
     //去扫描二维码
@@ -107,18 +135,4 @@ class TransferViewModel(context: Context) : BaseViewModel(context),
         }
     }
 
-    //转账结果回调
-    override fun onTransferResponse(
-        result: Boolean,
-        transactionReceipt: TransactionReceipt?,
-        tip: String
-    ) {
-        loadingData.postValue(false)
-        toastMsgData.postValue(tip)
-        if (result) {
-            if (transactionReceipt != null) {//转账成功
-                transferResultData.postValue(true)
-            }
-        }
-    }
 }

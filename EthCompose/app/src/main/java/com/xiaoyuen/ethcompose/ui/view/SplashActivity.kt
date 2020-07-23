@@ -53,6 +53,6 @@ class SplashActivity : BaseComposeActivity<SplashViewModel>() {
     }
 
     override fun composeLoaded() {
-        viewModel?.requestPermissions()
+        viewModel?.checkAccount()
     }
 }

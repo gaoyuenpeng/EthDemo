@@ -45,9 +45,14 @@ open class BaseViewModel(val context: Context) : ViewModel() {
         context.startActivity(intent)
     }
 
-    fun goMnemonics(mnemonics: String) {
+    fun goMnemonics() {
         val intent = Intent(context, AccountBuildMnemonicsActivity::class.java)
-        intent.putExtra("mnemonics", mnemonics)
+        context.startActivity(intent)
+    }
+
+    fun goSplash() {
+        val intent = Intent(context, SplashActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         context.startActivity(intent)
     }
 }

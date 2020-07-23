@@ -3,6 +3,7 @@ package com.xiaoyuen.ethcompose.entity
 import androidx.compose.Model
 import androidx.ui.foundation.TextFieldValue
 import com.xiaoyuen.ethcompose.R
+import org.web3j.abi.datatypes.Bool
 
 //首页tab
 data class TabItemModel(
@@ -28,6 +29,14 @@ val HomeTabItems = listOf(
     )
 )
 
+//网络请求结果
+data class RequestResult<T : Any>(
+    val code: Int,
+    val result: Boolean,
+    val message: String? = null,
+    val data: T? = null
+)
+
 //string Model
 @Model
 class StringValueModel(var value: String = "")
@@ -42,4 +51,11 @@ class TextFieldValueValueModel(var value: TextFieldValue)
 
 //WalletAccount Model
 @Model
-class WalletValueModel(var walletAccount: WalletAccount?)
+class WalletValueModel(var walletAccount: WalletAccount? = null)
+
+//stringList Model
+@Model
+class StringListValueModel(var value: List<String>? = null)
+
+@Model
+class ValueModel<T>(var value: T? = null)
