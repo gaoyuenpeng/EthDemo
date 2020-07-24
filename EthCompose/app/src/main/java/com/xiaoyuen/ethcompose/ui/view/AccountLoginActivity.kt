@@ -3,6 +3,7 @@ package com.xiaoyuen.ethcompose.ui.view
 import androidx.compose.Composable
 import androidx.compose.state
 import androidx.ui.core.Modifier
+import androidx.ui.core.drawOpacity
 import androidx.ui.foundation.*
 import androidx.ui.input.KeyboardType
 import androidx.ui.layout.*
@@ -13,6 +14,7 @@ import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import com.xiaoyuen.ethcompose.R
 import com.xiaoyuen.ethcompose.base.BaseComposeActivity
+import com.xiaoyuen.ethcompose.base.Config
 import com.xiaoyuen.ethcompose.compose.*
 import com.xiaoyuen.ethcompose.ui.viewmodel.AccountLoginViewModel
 import com.xiaoyuen.ethcompose.ui.viewmodel.ViewModelFactory
@@ -26,15 +28,14 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
     @Composable
     override fun loadCompose() {
 
-//        val helpWordsState =
-//            state { TextFieldValue("") }
-//        val passwordState = state { TextFieldValue("") }
-//        val passwordConfirmState = state { TextFieldValue("") }
+        val helpWordsState = state { TextFieldValue("") }
+        val passwordState = state { TextFieldValue("") }
+        val passwordConfirmState = state { TextFieldValue("") }
 
-        val helpWordsState =
-            state { TextFieldValue("when work aspect fat flush must tilt south summer column safe update") }
-        val passwordState = state { TextFieldValue("gao251977337") }
-        val passwordConfirmState = state { TextFieldValue("gao251977337") }
+//        val helpWordsState =
+//            state { TextFieldValue("when work aspect fat flush must tilt south summer column safe update") }
+//        val passwordState = state { TextFieldValue("gao251977337") }
+//        val passwordConfirmState = state { TextFieldValue("gao251977337") }
 
         CommonContent(stringResource(R.string.restore_account), onBackClick = { finish() }) {
 
@@ -103,13 +104,20 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
                             })
                     }
                     CommonButton(title = stringResource(R.string.restore_account),
-                        modifier = Modifier.padding(top = 30.dp),
+                        modifier = Modifier.padding(top = 50.dp),
                         onClick = {
                             viewModel?.login(
                                 helpWordsState.value.text,
                                 passwordState.value.text,
                                 passwordConfirmState.value.text
                             )
+                        })
+                    CommonButton(title = stringResource(R.string.test_account),
+                        modifier = Modifier.padding(top = 30.dp).drawOpacity(0.2f),
+                        onClick = {
+                            helpWordsState.value = TextFieldValue(Config.testMnemonics)
+                            passwordState.value = TextFieldValue(Config.testPassword)
+                            passwordConfirmState.value = TextFieldValue(Config.testPassword)
                         })
                 }
                 if (loadingModel.value) {

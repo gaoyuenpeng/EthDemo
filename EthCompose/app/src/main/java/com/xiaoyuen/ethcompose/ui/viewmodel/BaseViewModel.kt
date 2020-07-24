@@ -11,13 +11,9 @@ open class BaseViewModel(val context: Context) : ViewModel() {
     protected val loadingData = MutableLiveData<Boolean>()//loading对话框
     protected val toastMsgData = MutableLiveData<String>()//toast文案
 
-    fun loadingData(): MutableLiveData<Boolean> {
-        return loadingData
-    }
+    fun loadingData(): MutableLiveData<Boolean> = loadingData
 
-    fun toastMsgData(): MutableLiveData<String> {
-        return toastMsgData
-    }
+    fun toastMsgData(): MutableLiveData<String> = toastMsgData
 
     fun goMain() {
         val intent = Intent(context, MainActivity::class.java)

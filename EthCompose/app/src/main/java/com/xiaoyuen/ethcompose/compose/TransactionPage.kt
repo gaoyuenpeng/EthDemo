@@ -22,7 +22,7 @@ import com.xiaoyuen.ethcompose.R
 @Preview
 @Composable
 fun TransactionPage() {
-    val wallet =
+    val walletAccount =
         WalletAccount(
             privateKey = "aksdjhflaksjdhfasd",
             publicKey = "asldkaskjdf;lajsdfljas;ldfkj;asldkfj",
@@ -30,11 +30,12 @@ fun TransactionPage() {
             mnemonics = "111 222 333 444 555 666 777 888 999 10 11 12",
             balance = 10.3f
         )
-    TransactionPage(wallet = wallet, mainViewModel = null)
+    TransactionPage(wallet = walletAccount)
 }
 
+//首页交易页面
 @Composable
-fun TransactionPage(wallet: WalletAccount?, mainViewModel: MainViewModel?) {
+fun TransactionPage(wallet: WalletAccount?, mainViewModel: MainViewModel? = null) {
     wallet?.let { walletAccount ->
         MaterialTheme(colors = LightColorPalette) {
             BoxGray(modifier = Modifier.fillMaxSize()) {

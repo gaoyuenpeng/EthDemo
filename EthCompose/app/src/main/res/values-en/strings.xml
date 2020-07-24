@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">EthCompose</string>
 
+    <string name="error">Error</string>
     <string name="transaction">Transaction</string>
     <string name="wallet">Wallet</string>
     <string name="build_account">Build account</string>
@@ -12,7 +13,7 @@
     <string name="backups_mnemonics">Backups mnemonics</string>
     <string name="remember_mnemonics_inorder">Please copy the mnemonics in order to ensure the correct backup</string>
     <string name="confirm_backups">Backup confirmed</string>
-    <string name="restore_account">Restoration of account</string>
+    <string name="restore_account">Login account</string>
     <string name="mnemonics">Mnemonics</string>
     <string name="wallet_password">Password</string>
     <string name="password">Password</string>
@@ -37,7 +38,7 @@
     <string name="please_input_the_transfer_amount">Please input the Transfer amount</string>
     <string name="transfer_success">Transfer success</string>
     <string name="transfer_failure">Transfer failure</string>
-    <string name="scan_to_transfer">Scan QR code,transfer </string>
+    <string name="scan_to_transfer">Scan QR code,transfer</string>
     <string name="loading">Loading</string>
     <string name="address">Address</string>
     <string name="private_key">Private key</string>
@@ -46,5 +47,6 @@
     <string name="confirm_exit_account">Confirm exit account？</string>
     <string name="no">No</string>
     <string name="sure">Yes</string>
+    <string name="test_account">Test account</string>
 
 </resources>

@@ -66,14 +66,14 @@ class CollectionActivity : BaseComposeActivity<CollectionViewModel>() {
                 horizontalGravity = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(R.string.scan_to_transfer) + "${collectionValueModel.value} ETH",
+                    text = "${stringResource(R.string.scan_to_transfer)} ${collectionValueModel.value} ETH",
                     style = TextStyle(color = TextGreyHint, fontSize = TextUnit.Sp(16)),
                     modifier = Modifier.padding(top = 20.dp)
                 )
                 DividerTransparent()
                 if (qrCodeValueModel.value.isNotEmpty()) {
                     ImageWithQR(
-                        context = context,
+                        context = this@CollectionActivity,
                         qrCode = qrCodeValueModel.value,
                         width = 200.dp,
                         height = 200.dp

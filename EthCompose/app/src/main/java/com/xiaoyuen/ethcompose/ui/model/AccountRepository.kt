@@ -3,7 +3,6 @@ package com.xiaoyuen.ethcompose.ui.model
 import android.content.Context
 import android.os.Environment
 import androidx.lifecycle.MutableLiveData
-import androidx.ui.res.stringResource
 import com.xiaoyuen.ethcompose.R
 import com.xiaoyuen.ethcompose.base.Config
 import com.xiaoyuen.ethcompose.entity.RequestResult
@@ -80,7 +79,7 @@ class AccountRepository(
     /***
      * 转账
      */
-    suspend fun transferEth1(toAddress: String, amount: BigDecimal): TransactionReceipt? {
+    suspend fun transferEth(toAddress: String, amount: BigDecimal): TransactionReceipt? {
 
         if (walletAccount == null) {
             return null

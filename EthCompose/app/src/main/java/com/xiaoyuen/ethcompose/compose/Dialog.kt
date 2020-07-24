@@ -18,6 +18,7 @@ import androidx.ui.unit.dp
 import com.xiaoyuen.ethcompose.R
 
 
+//loading加载ProgressBa
 @Composable
 fun LoadingProgressBar(title: String = stringResource(R.string.loading)) {
 
@@ -48,6 +49,7 @@ fun LoadingProgressBar(title: String = stringResource(R.string.loading)) {
 
 }
 
+//alert对话框
 @Composable
 fun AlertDialog(
     title: String? = null,

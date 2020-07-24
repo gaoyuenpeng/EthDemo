@@ -154,6 +154,7 @@ fun BoxGray(
     )
 }
 
+//title bar
 @Composable
 fun MyTitleBar(title: String, onBackClick: () -> Unit = {}) {
     Box(
@@ -172,6 +173,7 @@ fun MyTitleBar(title: String, onBackClick: () -> Unit = {}) {
     }
 }
 
+//助记词表格
 @Composable
 fun Mnemonics(mnemonics: List<String>) {
 

@@ -8,6 +8,7 @@ import androidx.ui.material.Divider
 import androidx.ui.unit.Dp
 import androidx.ui.unit.dp
 
+//分割线
 @Composable
 fun DividerTransparent(height: Dp = 10.dp) {
     DividerColor(

@@ -10,6 +10,7 @@ import androidx.ui.layout.size
 import androidx.ui.unit.Dp
 import com.xiaoyuen.ethcompose.scan.QrCodeUtil
 
+//二维码imageView
 @Composable
 fun ImageWithQR(
     context: Context,
@@ -22,6 +23,7 @@ fun ImageWithQR(
     Image(bitmap, width, height, modifier)
 }
 
+//imageView with bitmap
 @Composable
 fun Image(bitmap: Bitmap?, width: Dp, height: Dp, modifier: Modifier = Modifier) {
     bitmap?.let {

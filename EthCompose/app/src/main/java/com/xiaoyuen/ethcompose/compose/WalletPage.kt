@@ -17,7 +17,7 @@ import com.xiaoyuen.ethcompose.R
 @Preview
 @Composable
 fun WalletPage() {
-    val account =
+    val walletAccount =
         WalletAccount(
             privateKey = "aksdjhflaksjdhfasd",
             publicKey = "asldkaskjdf;lajsdfljas;ldfkj;asldkfj",
@@ -25,11 +25,12 @@ fun WalletPage() {
             mnemonics = "111 222 333 444 555 666 777 888 999 10 11 12",
             balance = 10.3f
         )
-    WalletPage(wallet = account, mainViewModel = null)
+    WalletPage(wallet = walletAccount)
 }
 
+//首页钱包页面
 @Composable
-fun WalletPage(wallet: WalletAccount?, mainViewModel: MainViewModel?) {
+fun WalletPage(wallet: WalletAccount? = null, mainViewModel: MainViewModel? = null) {
 
     val showDialog = state { false }
 

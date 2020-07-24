@@ -45,7 +45,7 @@ class ScanCodeActivity : AppCompatActivity(), QRCodeView.Delegate {
     }
 
     override fun onScanQRCodeOpenCameraError() {
-        ToastUtil.show(this, "错误")
+        ToastUtil.show(this, resources.getString(R.string.error))
     }
 
     override fun onStop() {

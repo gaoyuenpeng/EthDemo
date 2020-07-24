@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">EthCompose</string>
 
+    <string name="error">错误</string>
     <string name="transaction">交易</string>
     <string name="wallet">钱包</string>
     <string name="build_account">创建身份</string>
@@ -46,5 +47,6 @@
     <string name="confirm_exit_account">确定退出账号？</string>
     <string name="no">暂不</string>
     <string name="sure">确定</string>
+    <string name="test_account">测试账号</string>
 
 </resources>

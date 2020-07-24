@@ -22,6 +22,7 @@ import com.xiaoyuen.ethcompose.entity.TabItemModel
 import com.xiaoyuen.ethcompose.entity.WalletAccount
 import com.xiaoyuen.ethcompose.ui.viewmodel.MainViewModel
 
+//bottom bar item
 @Composable
 fun HomeTabItem(item: TabItemModel, pageState: Int, onClick: () -> Unit) {
 
@@ -47,6 +48,7 @@ fun HomeTabItem(item: TabItemModel, pageState: Int, onClick: () -> Unit) {
     }
 }
 
+//bottom bar
 @Composable
 fun HomeBottomBar(
     currentPageState: MutableState<Int>,
@@ -70,6 +72,7 @@ fun HomeBottomBar(
     }
 }
 
+//钱包首页
 @Composable
 fun MainPage(page: Int, walletAccount: WalletAccount?, mainViewModel: MainViewModel?) {
     when (page) {

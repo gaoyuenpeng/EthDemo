@@ -33,21 +33,13 @@ class TransferViewModel(context: Context) : BaseViewModel(context) {
     private var accountRepository =
         AccountRepository(context, walletAccountLiveData = walletAccountLiveData)
 
-    fun walletAccount(): MutableLiveData<WalletAccount> {
-        return walletAccountLiveData
-    }
+    fun walletAccount(): MutableLiveData<WalletAccount> = walletAccountLiveData
 
-    fun addressData(): MutableLiveData<String> {
-        return addressData
-    }
+    fun addressData(): MutableLiveData<String> = addressData
 
-    fun amountData(): MutableLiveData<String> {
-        return amountData
-    }
+    fun amountData(): MutableLiveData<String> = amountData
 
-    fun transferResultData(): MutableLiveData<Boolean> {
-        return transferResultData
-    }
+    fun transferResultData(): MutableLiveData<Boolean> = transferResultData
 
     //获取钱包
     fun getWalletAccount() {
@@ -75,7 +67,7 @@ class TransferViewModel(context: Context) : BaseViewModel(context) {
 
             GlobalScope.launch {
 
-                val transactionReceipt = accountRepository.transferEth1(address, value)
+                val transactionReceipt = accountRepository.transferEth(address, value)
 
                 loadingData.postValue(false)
                 if (transactionReceipt != null) {
