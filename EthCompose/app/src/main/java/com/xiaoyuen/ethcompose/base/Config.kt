@@ -8,7 +8,7 @@ object Config {
     const val balanceEmpty = -1000f
 
     const val testMnemonics =
-        "when work aspect fat flush must tilt south summer column safe update:"//测试账号助记词
+        "when work aspect fat flush must tilt south summer column safe update"//测试账号助记词
     const val testPassword = "gao251977337"//测试账号密码
 
 }

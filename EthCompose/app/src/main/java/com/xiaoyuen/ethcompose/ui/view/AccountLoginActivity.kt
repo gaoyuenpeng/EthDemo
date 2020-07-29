@@ -32,11 +32,6 @@ class AccountLoginActivity : BaseComposeActivity<AccountLoginViewModel>() {
         val passwordState = state { TextFieldValue("") }
         val passwordConfirmState = state { TextFieldValue("") }
 
-//        val helpWordsState =
-//            state { TextFieldValue("when work aspect fat flush must tilt south summer column safe update") }
-//        val passwordState = state { TextFieldValue("gao251977337") }
-//        val passwordConfirmState = state { TextFieldValue("gao251977337") }
-
         CommonContent(stringResource(R.string.restore_account), onBackClick = { finish() }) {
 
             Stack(modifier = Modifier.fillMaxSize()) {
